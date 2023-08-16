@@ -36,12 +36,19 @@ use App\Http\Controllers\Web\{HomeController,UserController};
 //     })->name('dashboard');
 // });
 
-
+// webloginauthcheck will check and redirect to login ---
+// weblogincheck will check and redirect to particular page user want
 
 Route::get('/',[HomeController::class,'home']);
 
-Route::controller(UserController::class)->group(function(){
+// Route::prefix('web')->controller(UserController::class)->group(function(){
+Route::middleware('webloginauthcheck')->controller(UserController::class)->group(function(){
     Route::any('user-login','user_login')->name('user-login');
+    Route::any('user-register','user_register')->name('user-register');
+    // Route::any('user-dashboard','user_dashboard')->name('user-dashboard');
+});
+Route::controller(UserController::class)->group(function(){
+    // Route::any('user-login','user_login')->name('user-login');
     Route::any('user-register','user_register')->name('user-register');
     Route::any('user-dashboard','user_dashboard')->name('user-dashboard');
 });
