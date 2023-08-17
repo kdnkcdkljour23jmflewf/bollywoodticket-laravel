@@ -17,11 +17,9 @@ class Authwebuser
      */
     public function handle(Request $request, Closure $next)
     {
-        // dd(333);
         if(!Auth::guard('web')->check()){
-            return redirect('user-login');
+            return $next($request);
         }
         return redirect('user-dashboard');
-        // return $next($request);
     }
 }

@@ -13,7 +13,6 @@ class UserController extends Controller
 
     function user_login(Request $r) {
         if($r->isMethod('post')){
-            // dd(3333);
             $r->validate([
                 'email' => 'required',
                 'password' => 'required',

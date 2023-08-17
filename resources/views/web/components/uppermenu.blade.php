@@ -88,7 +88,15 @@
                      </ul>
                  </div>
                  <div class="header__top__right__auth">
-                     <a href="#"><i class="fa fa-user"></i> Login</a>
+                        @php
+                            $user = Auth::guard('web')?->user();
+                            $name = $user?->name;
+                        @endphp 
+                        @if ($name)
+                            <a href="#"><i class="fa fa-user"></i>Welcome,{{$name}}</a>  
+                        @else
+                            <a href="#"><i class="fa fa-user"></i> Login</a>
+                        @endif
                  </div>
                  </div>
              </div>

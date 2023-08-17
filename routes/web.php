@@ -47,8 +47,6 @@ Route::middleware('webloginauthcheck')->controller(UserController::class)->group
     Route::any('user-register','user_register')->name('user-register');
     // Route::any('user-dashboard','user_dashboard')->name('user-dashboard');
 });
-Route::controller(UserController::class)->group(function(){
-    // Route::any('user-login','user_login')->name('user-login');
-    Route::any('user-register','user_register')->name('user-register');
+Route::middleware('weblogincheck')->controller(UserController::class)->group(function(){
     Route::any('user-dashboard','user_dashboard')->name('user-dashboard');
 });
