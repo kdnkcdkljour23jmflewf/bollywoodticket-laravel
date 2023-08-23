@@ -84,6 +84,7 @@ class UserController extends Controller
     }
     function user_dashboard() {
         return view('web.user.dashboard');
+        //check
     }
     public function verifyAccount($token,Request $r)
     {
