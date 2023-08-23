@@ -5,10 +5,24 @@ namespace App\Models\Web;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
 
 class Webuser extends Model implements Authenticatable
 {
-    use HasFactory;
+    use HasFactory,Notifiable;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'is_email_verified'
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
     public function getRememberToken()
     {
         return $this->remember_token;

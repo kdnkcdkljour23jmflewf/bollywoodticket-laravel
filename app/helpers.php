@@ -17,12 +17,12 @@ if(!function_exists('user_register')){
         if($count > 0){
             return false;
         }else{
-            $status = Webuser::insert([
+            $id  = Webuser::insertGetId([
                 'email' => $user_data['email'],
                 'name' => $user_data['name'],
                 'password' => Hash::make($user_data['password']),
             ]);
-            return true;
+            return $id;
         }
     }
 }

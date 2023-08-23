@@ -50,3 +50,6 @@ Route::middleware('webloginauthcheck')->controller(UserController::class)->group
 Route::middleware('weblogincheck')->controller(UserController::class)->group(function(){
     Route::any('user-dashboard','user_dashboard')->name('user-dashboard');
 });
+
+Route::get('dashboard', [UserController::class, 'dashboard'])->middleware(['auth', 'is_verify_email']); 
+Route::get('account/verify/{token}', [UserController::class, 'verifyAccount'])->name('user.verify'); 
