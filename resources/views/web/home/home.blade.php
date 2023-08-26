@@ -74,7 +74,10 @@
                         <div class="col-lg-3">
                                 <div class="categories__item set-bg" data-setbg="{{asset('movie/').'/'.$item->image}}">
                                     <h5>
-                                        <a href="{{route('book-ticket')}}">{{$item->name}}</a>
+                                        @php
+                                            $movie_id = encrypt($item->id) ;
+                                        @endphp
+                                        <a href="{{route('book-ticket').'/id='.$movie_id}}">{{$item->name}}</a>
                                     </h5>
                                 </div>
                         </div>    

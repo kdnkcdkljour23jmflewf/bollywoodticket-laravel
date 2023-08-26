@@ -52,7 +52,7 @@ Route::middleware('weblogincheck')->controller(UserController::class)->group(fun
     Route::any('book-ticket','book_ticket')->name('book-ticket');
 });
 Route::middleware('weblogincheck')->controller(MovieController::class)->group(function(){
-    Route::any('book-ticket','book_ticket')->name('book-ticket');
+    Route::any('book-ticket/{id?}','book_ticket')->name('book-ticket');
 });
 
 Route::get('dashboard', [UserController::class, 'dashboard'])->middleware(['auth', 'is_verify_email']); 
