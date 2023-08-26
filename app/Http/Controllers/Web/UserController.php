@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Mail; 
 use Str;
+use URL;
 use App\Models\Web\UserVerify;
 class UserController extends Controller
 {
@@ -36,16 +37,16 @@ class UserController extends Controller
 
     function user_register(Request $r) {
         $data['msg'] = '';
-        if($r->isMethod('post')){       
-
+        if($r->isMethod('post')){
 
             // dd(222);
-           /*  $r->validate([
+
+         /*    $r->validate([
                 'email' => 'required|unique:webusers',
                 'name' => 'required',
                 'password' => 'required',
-            ]);
- */
+            ]); */
+
             $user['email'] = $r->email;
             $user['password'] = $r->password;
             $user['name'] = $r->name;
@@ -62,21 +63,27 @@ class UserController extends Controller
             // guptadharmanshu@gmail.com
 
             Mail::send('web.emails.VerificationEmail', ['token' => $token], function($message) use($r){
-               
                 $message->from($r->email);
                 $message->sender($r->email);
                 $message->to($r->email);
                 $message->subject('Email Verification Mail');
             });
-            dd(222);
 
             if($id){
-                // dd(444);
-                $r->session()->flash('success', 'Register successful!');
-                return redirect('user-login');
+                $url = URL::to('user-login');
+                $message = 'Register successful!';
+                echo '<script>
+                    alert("'.$message.'")
+                    window.location.href = "'.$url.'"
+                </script>';
             }else{
-                // dd(333);
-                $r->session()->flash('error', 'Register unsuccessful user exist');
+                $url = URL::to('user-register');
+                $message = 'Register unsuccessful user exist';
+                echo '<script>
+                    alert("'.$message.'")
+                    window.location.href = "'.$url.'"
+                </script>';
+                // $r->session()->flash('error', 'Register unsuccessful user exist');
             }
 
         }
@@ -103,7 +110,7 @@ class UserController extends Controller
             }
         }
         $url = URL::to('user-login');
-        dd($url);
+        
         echo '<script>
             alert("'.$message.'")
             window.location.href = "'.$url.'"

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\GoogleController;
-use App\Http\Controllers\Web\{HomeController,UserController};
+use App\Http\Controllers\Web\{HomeController,UserController,MovieController};
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +49,10 @@ Route::middleware('webloginauthcheck')->controller(UserController::class)->group
 });
 Route::middleware('weblogincheck')->controller(UserController::class)->group(function(){
     Route::any('user-dashboard','user_dashboard')->name('user-dashboard');
+    Route::any('book-ticket','book_ticket')->name('book-ticket');
+});
+Route::middleware('weblogincheck')->controller(MovieController::class)->group(function(){
+    Route::any('book-ticket','book_ticket')->name('book-ticket');
 });
 
 Route::get('dashboard', [UserController::class, 'dashboard'])->middleware(['auth', 'is_verify_email']); 
