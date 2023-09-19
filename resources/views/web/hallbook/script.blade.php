@@ -1,5 +1,6 @@
 <script>
 // Select all the required DOM elements
+document.getElementById('seatselect').value = localStorage.getItem("seatIndex")
 const container = document.querySelector(".container");
 const seats = document.querySelectorAll(".row .seat:not(.occupied)");
 const selectMovie = document.getElementById("movie");
@@ -35,6 +36,8 @@ function updateCountAndTotal() {
     [...seats].indexOf(seat)
   );
   localStorage.setItem("seatIndex", JSON.stringify(seatsIndex));
+ 
+  // $('#seatselect').val(localStorage.getItem("seatIndex"))
 }
 
 // Populate UI
