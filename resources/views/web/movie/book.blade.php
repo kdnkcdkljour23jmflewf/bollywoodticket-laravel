@@ -1,116 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  
-</head>
-<body>
-  @extends('web.hallbook.style')
-  <form action="" method="post">
-      <div class="movie-container" style="display:none">
-        <h2>HomeBoxOffice</h2>
-        <label>Select a Movie:</label>
-        <select id="movie">
-          <option value="Select a movie">Select a Movie</option>
-          <option value="15">Wonder Women 1984</option>
-          <option value="10">Avenger: Endgame</option>
-          <option value="12">Joker</option>
-          <option value="8">Toy Story 4</option>
-        </select>
-      </div>
+@extends('web.components.app')
+@extends('web.components.uppermenu')
+@section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+  .messagePanel { border: solid 1px black; width: 320px; height: 330px; }
 
-      <ul class="showcase">
-        <li>
-          <div class="seat"></div>
-          <small>Available</small>
-        </li>
-        <li>
-          <div class="seat selected"></div>
-          <small>Selected</small>
-        </li>
-        <li>
-          <div class="seat"></div>
-          <small>Occupied</small>
-        </li>
-      </ul>
+.seat {
+    
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    border: solid 1px black;
+    float: left;
+    
+    
+}
 
-      <div class="container">
-        <div class="screen"></div>
+.clearfix { clear: both;}
+.available {
+    background-color: #96c131;
+}
 
-        <div class="row">
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-        </div>
-        <div class="row">
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-        </div>
-        <div class="row">
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-        </div>
-        <div class="row">
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-        </div>
-        <div class="row">
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-        </div>
-        <div class="row">
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-          <div class="seat"></div>
-        </div>
-      </div>
+.hovering{
+	background-color: #ae59b3;
+}
+.selected{
+    background-color: red;
+}
 
-      <p class="text">
-        You have selected <span id="count">0</span> movies for price of $<span
-          id="total"
-          >0</span
-        >
-      </p>
-    <input type="hidden" name="seatselect" id="seatselect">
-    <input type="submit" value="BookTicket" class="btn btn-primary">
-    @csrf
-  </form>
-  @extends('web.hallbook.script')
-</body>
-</html>
+</style>
+<div id="messagePanel" class="messagePanel"></div>
+<script>
+  $(()=>{
+    createseating()
+  })
+//Note:In js the outer loop runs first then the inner loop runs completely so it goes o.l. then i.l. i.l .i.l .i.l. i.l etc and repeat
+
+function createseating(){
+
+ var seatingValue = [];
+ for ( var i = 0; i < 10; i++){
+   
+    for (var j=0; j<10; j++){
+        var seatingStyle = "<div class='seat available'></div>";
+        seatingValue.push(seatingStyle);
+
+         if ( j === 9){
+        console.log("hi");
+         var seatingStyle = "<div class='clearfix'></div>";
+        seatingValue.push(seatingStyle);   
+
+
+
+     }
+  }   
+}
+
+$('#messagePanel').html(seatingValue);
+
+       $(function(){
+            $('.seat').on('click',function(){ 
+
+
+              if($(this).hasClass( "selected" )){
+                $( this ).removeClass( "selected" );                  
+              }else{                   
+                $( this ).addClass( "selected" );
+              }
+
+            });
+
+            $('.seat').mouseenter(function(){     
+                $( this ).addClass( "hovering" );
+
+                   $('.seat').mouseleave(function(){ 
+                   $( this ).removeClass( "hovering" );
+                      
+                   });
+            });
+
+
+       });
+
+};
+</script>
+@endsection

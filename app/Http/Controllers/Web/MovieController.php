@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Web\Bookticket;
+use App\Models\Admin\Movie\Movie;
 
 class MovieController extends Controller
 {
@@ -15,9 +16,11 @@ class MovieController extends Controller
         if($r->isMethod('post')){
             // $r->seatselect
             // dd($r->all());
-            // Bookticket::insert();
+            Bookticket::insert();
         }
         // dd($id);
-        return view('web.movie.book');
+        $data['movie_data'] = Movie::find($id)->name;
+        // dd($data);
+        return view('web.movie.book',$data);
     }
 }
