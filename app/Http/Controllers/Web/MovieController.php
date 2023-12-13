@@ -15,8 +15,8 @@ class MovieController extends Controller
         $id = decrypt($id);
         if($r->isMethod('post')){
             // $r->seatselect
-            // dd($r->all());
-            Bookticket::insert();
+            dd($r->all());
+            // Bookticket::insert();
         }
         // dd($id);
         $data['movie_data'] = Movie::find($id)->name;

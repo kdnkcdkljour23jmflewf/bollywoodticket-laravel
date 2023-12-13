@@ -15,6 +15,9 @@ class UserController extends Controller
         App::setLocale(env('language','en'));
     }
 
+    function user_logout(Request $r) {
+        user_logout();
+    }
     function user_login(Request $r) {
         if($r->isMethod('post')){
             $r->validate([

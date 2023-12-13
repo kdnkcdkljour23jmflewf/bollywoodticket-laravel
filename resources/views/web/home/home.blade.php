@@ -77,6 +77,7 @@
                                         @php
                                             $movie_id = encrypt($item->id) ;
                                         @endphp
+                                        <a href="{{route('book-ticket').'/id='.$movie_id}}">Add to Cart</a>
                                         <a href="{{route('book-ticket').'/id='.$movie_id}}">{{$item->name}}</a>
                                     </h5>
                                 </div>

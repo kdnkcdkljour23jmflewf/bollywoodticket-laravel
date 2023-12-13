@@ -49,6 +49,7 @@ Route::middleware('webloginauthcheck')->controller(UserController::class)->group
 });
 Route::middleware('weblogincheck')->controller(UserController::class)->group(function(){
     Route::any('user-dashboard','user_dashboard')->name('user-dashboard');
+    Route::any('user-logout','user_logout')->name('user-logout');
     Route::any('book-ticket','book_ticket')->name('book-ticket');
 });
 Route::middleware('weblogincheck')->controller(MovieController::class)->group(function(){

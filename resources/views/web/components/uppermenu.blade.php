@@ -93,9 +93,11 @@
                             $name = $user?->name;
                         @endphp 
                         @if ($name)
-                            <a href="#"><i class="fa fa-user"></i>Welcome,{{$name}}</a>  
+                            <a href="#"><i class="fa fa-user"></i>Welcome,{{$name}}</a>
+                            <br><br>  
+                            <a href="{{url('user-logout')}}"><i class="fa fa-user"></i>Logout</a>  
                         @else
-                            <a href="#"><i class="fa fa-user"></i> Login</a>
+                            <a href="{{url('user-login')}}"><i class="fa fa-user"></i> Login</a>
                         @endif
                  </div>
                  </div>

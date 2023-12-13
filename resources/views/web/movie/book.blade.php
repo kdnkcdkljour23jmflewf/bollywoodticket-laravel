@@ -29,7 +29,12 @@
 }
 
 </style>
-<div id="messagePanel" class="messagePanel"></div>
+<h2>Movie name:{{$movie_data}}</h2>
+  <form action="" method="post">
+    <div id="messagePanel" class="messagePanel"></div>
+    @csrf
+    <input type="submit" class="btn btn-primary" value="Submit">
+  </form>
 <script>
   $(()=>{
     createseating()
@@ -39,47 +44,46 @@
 function createseating(){
 
  var seatingValue = [];
+ var seat_num = ''
  for ( var i = 0; i < 10; i++){
-   
     for (var j=0; j<10; j++){
-        var seatingStyle = "<div class='seat available'></div>";
+        var seatingStyle = `
+        <div class='seat available' data-id="${j+1}_${i+1}">
+        </div>`;
         seatingValue.push(seatingStyle);
 
          if ( j === 9){
         console.log("hi");
          var seatingStyle = "<div class='clearfix'></div>";
-        seatingValue.push(seatingStyle);   
-
-
-
+        seatingValue.push(seatingStyle);
      }
-  }   
+  }
 }
 
 $('#messagePanel').html(seatingValue);
 
        $(function(){
-            $('.seat').on('click',function(){ 
+            var seat_no = [];
+            $('.seat').on('click',function(){
+              
+              seat_no.push($(this).data('id'))
 
+              console.log(seat_no)
 
-              if($(this).hasClass( "selected" )){
-                $( this ).removeClass( "selected" );                  
-              }else{                   
-                $( this ).addClass( "selected" );
+              if($(this).hasClass("selected")){
+                $(this).removeClass( "selected")
+              }else{
+                $(this).addClass( "selected")
               }
 
-            });
+            })
 
-            $('.seat').mouseenter(function(){     
-                $( this ).addClass( "hovering" );
-
-                   $('.seat').mouseleave(function(){ 
-                   $( this ).removeClass( "hovering" );
-                      
-                   });
-            });
-
-
+            $('.seat').mouseenter(function(){
+                $(this).addClass("hovering")
+                   $('.seat').mouseleave(function(){
+                   $(this).removeClass("hovering")
+                })
+            })
        });
 
 };

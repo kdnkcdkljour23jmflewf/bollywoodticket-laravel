@@ -11,6 +11,12 @@ if(!function_exists('user_login')){
         }
     }
 }
+if(!function_exists('user_logout')){
+    function user_logout(){
+        Auth::guard('web')->logout();
+        header("Refresh:0");
+    }
+}
 if(!function_exists('user_register')){
     function user_register($user_data){
         $count = Webuser::where(['email'=>$user_data['email']])->count();
