@@ -30,16 +30,24 @@
 
 </style>
 <h2>Movie name:{{$movie_data}}</h2>
-  <form action="" method="post">
+  <form action="" name="ticket_movie_frm" id="ticket_movie_frm" method="post">
     <div id="messagePanel" class="messagePanel"></div>
     @csrf
-    <input type="submit" class="btn btn-primary" value="Submit">
+    <input type="hidden" name="movie_id" id="movie_id" value="{{$movie_id}}">
+    <input type="hidden" name="ticket_detail" id="ticket_detail">
+    <input type="button" class="btn btn-primary frm_btn_submit" value="Submit">
   </form>
 <script>
   $(()=>{
     createseating()
   })
 //Note:In js the outer loop runs first then the inner loop runs completely so it goes o.l. then i.l. i.l .i.l .i.l. i.l etc and repeat
+var seat_no = [];
+
+$('.frm_btn_submit').click(()=>{
+  $('#ticket_detail').val(seat_no.join(','))
+  $('#ticket_movie_frm').submit()
+})
 
 function createseating(){
 
@@ -63,13 +71,10 @@ function createseating(){
 $('#messagePanel').html(seatingValue);
 
        $(function(){
-            var seat_no = [];
             $('.seat').on('click',function(){
               
               seat_no.push($(this).data('id'))
-
               console.log(seat_no)
-
               if($(this).hasClass("selected")){
                 $(this).removeClass( "selected")
               }else{

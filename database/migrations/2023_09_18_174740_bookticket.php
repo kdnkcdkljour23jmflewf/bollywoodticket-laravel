@@ -20,7 +20,7 @@ return new class extends Migration
             $table->tinyInteger('status')->default(1);
             $table->unsignedBigInteger('created_by');
             $table->timestamps();
-            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('created_by')->references('id')->on('webusers');
             $table->foreign('movieid')->references('id')->on('movie');
         });
     }
