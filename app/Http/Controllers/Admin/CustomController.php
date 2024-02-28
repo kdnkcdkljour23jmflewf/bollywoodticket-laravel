@@ -9,6 +9,7 @@ use App\Custom\Image;
 use App\Contracts\MyServiceInterface;
 use App\Models\Category;
 use Illuminate\Support\Facades\App;
+use Hash;
 class CustomController extends Controller
 {
     public $myService;
@@ -22,15 +23,19 @@ class CustomController extends Controller
 
     public static function userlogin(Request $r)
     {
-        if(Auth::guard('admin')->attempt(['email'=>$r->email,'password'=>$r->password])){
+        // echo Hash::make(123456); die;
+        // dd($r->password);
+        if(Auth::guard('web')->attempt(['email'=>$r->email,'password'=>$r->password])){
+            // dd(88);
             return true;
         }
+        // dd(66);
         return false;
     }
 
     public static function userlogout()
     {
-        Auth::guard('admin')->logout();
+        Auth::guard('web')->logout();
         return true;
     }
     public static function file_upload($request,$input_name,$path)

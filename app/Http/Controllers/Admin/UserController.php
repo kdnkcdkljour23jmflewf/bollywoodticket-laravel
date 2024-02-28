@@ -9,7 +9,7 @@ class UserController extends CustomController
     {
         // dd($this->r->all());
         if($this->r->isMethod('post')){
-            if(CustomController::userlogin($this->r)){
+            if(CustomController::userlogin($this->r)){    
                 return redirect('admin/dashboard');
             }
         }

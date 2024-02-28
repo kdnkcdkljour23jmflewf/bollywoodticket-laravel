@@ -67,6 +67,8 @@ Route::any('emp_form_edit/{id?}',[EmployeeController::class,'emp_form_edit']);
 Route::any('emp_resume_list',[EmployeeController::class,'emp_resume_list']);
 Route::any('emp_resume_delete',[EmployeeController::class,'emp_resume_delete']);
 Route::any('emp_resume_list_hr',[HrController::class,'emp_resume_list']);
-// Route::get('admin/dashboard',[DashboardController::class,'dashboard_view']);
+Route::middleware('adminrequestcheck')->controller(DashboardController::class)->group(function(){
+    Route::get('admin/dashboard',[DashboardController::class,'dashboard_view']);
+});
 
 
