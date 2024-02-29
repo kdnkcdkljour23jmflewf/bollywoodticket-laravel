@@ -22,6 +22,10 @@ class Ticket extends Model
     {
         return $this->hasOne(Movie::class,'id','movie_id');
     }
+    public function movieprice()
+    {
+        return $this->hasOne(Movie::class,'id','movie_id');
+    }
     public function category()
     {
         return $this->hasOne(Category::class,'id','category_id');

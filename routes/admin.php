@@ -42,6 +42,7 @@ Route::middleware('adminrequestcheck')->prefix('admin')->controller(MovieControl
     Route::get('movie-list','movie_list')->name('movie-list');
     Route::any('movie-insert','movie_add')->name('movie-insert');
     Route::any('movie-edit/{id}','movie_add')->name('movie-edit');
+    Route::any('movie-price/{id}','movie_price')->name('movie-price');
     Route::post('movie-delete','movie_delete')->name('movie-delete');
 });
 

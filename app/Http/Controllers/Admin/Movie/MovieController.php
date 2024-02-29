@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Movie;
 
 use App\Http\Controllers\Admin\CustomController;
 use App\Models\Admin\Movie\Movie;
+use App\Models\Ticket;
 class MovieController extends CustomController
 {
     
@@ -78,5 +79,10 @@ class MovieController extends CustomController
         $data['msg'] = 1;
         echo json_encode($data,true);
         // return json_encode($data);
+    }
+    public function movie_price($id){
+        $id = decrypt($id);
+        $data['movieprice_data'] = Ticket::with('movies','category')->where(['movie_id'=>$id])->get();
+        return view('admin.movie.price',$data);
     }
 }

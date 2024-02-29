@@ -42,7 +42,9 @@
                                         {{$item->status == 1 ? 'Active' : 'InActive'}}
                                     </td>
                                     <td>
-                                        
+                                      <a target="_blank" href="{{route('movie-price',['id'=>encrypt($item->id)])}}">
+                                        <input type="button" value="@lang('admin/movie/list.label.movie_list.action.mprice')" class="btn btn-warning">
+                                      </a>
                                         <a target="_blank" href="{{route('movie-edit',['id'=>encrypt($item->id)])}}">
                                           <input type="button" value="@lang('admin/movie/list.label.movie_list.action.edit')" class="btn btn-primary">
                                         </a>

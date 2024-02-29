@@ -8,4 +8,5 @@ return [
     'label.movie_list.action' => 'Action',
     'label.movie_list.action.edit' => 'Edit',
     'label.movie_list.action.delete' => 'Delete',
+    'label.movie_list.action.mprice' => 'Movie Price',
 ];
