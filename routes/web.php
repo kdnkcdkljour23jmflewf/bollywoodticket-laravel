@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Web\{HomeController,UserController,MovieController};
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ use App\Http\Controllers\Web\{HomeController,UserController,MovieController};
 // weblogincheck will check and redirect to particular page user want
 
 Route::get('/',[HomeController::class,'home']);
+Route::get('/payment',[PaymentController::class,'processPayment'])->middleware('paycheck');
 
 // Route::prefix('web')->controller(UserController::class)->group(function(){
 Route::middleware('webloginauthcheck')->controller(UserController::class)->group(function(){
