@@ -41,7 +41,8 @@ use App\Http\Controllers\PaymentController;
 // weblogincheck will check and redirect to particular page user want
 
 Route::get('/',[HomeController::class,'home']);
-Route::get('/payment',[PaymentController::class,'processPayment'])->middleware('paycheck');
+Route::get('/payment',[PaymentController::class,'processPayment']);
+// Route::get('/payment',[PaymentController::class,'processPayment'])->middleware('paycheck');
 
 // Route::prefix('web')->controller(UserController::class)->group(function(){
 Route::middleware('webloginauthcheck')->controller(UserController::class)->group(function(){

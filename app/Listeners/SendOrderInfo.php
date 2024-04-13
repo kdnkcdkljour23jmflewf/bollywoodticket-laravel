@@ -26,6 +26,7 @@ class SendOrderInfo
      */
     public function handle(MovieTicket $event)
     {
+        dd($event);
         dd('testing');
     }
 }

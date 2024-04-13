@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\PaymentInterface;
 use Illuminate\Http\Request;
+use App\Events\MovieTicket;
 
 class PaymentController extends Controller
 {
@@ -16,6 +17,8 @@ class PaymentController extends Controller
 
     public function processPayment()
     {
-        $this->PaymentProcess->Processpayment(100);
+        event(new MovieTicket(['test',123]));
+        // dd(444);
+        // $this->PaymentProcess->Processpayment(100);
     }
 }
