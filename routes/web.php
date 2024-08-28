@@ -23,9 +23,7 @@ use App\Http\Controllers\PaymentController;
 
 // Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 // Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
-// Route::get('dashboard', [GoogleController::class, 'dashboard']);
-
-
+// Route::get('dashboard
 
 // Route::middleware([
 //     'auth:sanctum',
@@ -39,7 +37,13 @@ use App\Http\Controllers\PaymentController;
 
 // webloginauthcheck will check and redirect to login ---
 // weblogincheck will check and redirect to particular page user want
-
+Route::get('queue-test', function(){
+  
+    dispatch(new App\Jobs\PrintJob());
+  
+    dd('done');
+});
+Route::get('/ormtest',[PaymentController::class,'ormtest']);
 Route::get('/',[HomeController::class,'home']);
 Route::get('/payment',[PaymentController::class,'processPayment']);
 // Route::get('/payment',[PaymentController::class,'processPayment'])->middleware('paycheck');

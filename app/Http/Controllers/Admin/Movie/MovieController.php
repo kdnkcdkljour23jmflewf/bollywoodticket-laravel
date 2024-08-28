@@ -68,7 +68,7 @@ class MovieController extends CustomController
 
     public function movie_list()
     {
-        $data['movie_list'] = Movie::with('category_data')->whereNull('deleted_at')->paginate(5);
+        $data['movie_list'] = Movie::with('category_data')->whereNull('deleted_at')->paginate(2);
         // dd($data['movie_list']);
         return view('admin.movie.list',$data);
     }
